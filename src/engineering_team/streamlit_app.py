@@ -1,46 +1,27 @@
 import streamlit as st
-import os
-from engineering_team.crew import EngineeringTeam  # Import your CrewAI team
 import subprocess
+import os
+from datetime import datetime
+from engineering_team.crew import EngineeringTeam
 
-st.set_page_config(page_title="Trading Simulation Team", page_icon="🤖", layout="wide")
+st.title("Trading Simulation Platform")
 
-st.title("🤖 Engineering Team for Trading Simulation")
-st.markdown("""
-This is a **multi-agent AI system** built with CrewAI that simulates a software development team working on a trading simulation platform.
-Click **Run Simulation** to see the results.
-""")
+# Button to run the simulation
+if st.button("Run Trading Simulation"):
+    with st.spinner("Running simulation..."):
+        # Run the main simulation script using subprocess
+        result = subprocess.run(["crewai", "run"], capture_output=True, text=True)
+        if result.returncode == 0:
+            st.success("Simulation completed successfully!")
+        else:
+            st.error(f"Simulation failed with error:\n{result.stderr}")
 
-# API Key setup (optional if already in .env)
-api_key = st.text_input(
-    "Enter your OPENAI_API_KEY (leave blank to use .env)", type="password"
-)
-if api_key:
-    os.environ["OPENAI_API_KEY"] = api_key
-
-# Run simulation button
-if st.button("🚀 Run Simulation"):
-    with st.spinner("Running the engineering team simulation..."):
-        try:
-            # Run the CrewAI process
-            EngineeringTeam.run()  # Direct call if your crew.py supports it
-
-            # Alternative: If you want to use CLI instead of Python import
-            # subprocess.run(["crewai", "run"], check=True)
-
-            # Load and display the report
-            if os.path.exists("report.md"):
-                with open("report.md", "r", encoding="utf-8") as f:
-                    report = f.read()
-                st.success("Simulation completed!")
-                st.markdown(report)
-            else:
-                st.warning("Simulation finished but no report.md found.")
-        except Exception as e:
-            st.error(f"Error running simulation: {e}")
-
-# Footer
-st.markdown("---")
-st.markdown(
-    "Built with [CrewAI](https://crewai.com) and [Streamlit](https://streamlit.io) 🚀"
-)
+# Display report if exists
+report_path = "report.md"
+if os.path.exists(report_path):
+    st.subheader("Simulation Report")
+    with open(report_path, "r") as file:
+        report_content = file.read()
+    st.markdown(report_content)
+else:
+    st.info("No simulation report found yet. Run the simulation to generate one.")
