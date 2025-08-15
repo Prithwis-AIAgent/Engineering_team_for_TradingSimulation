@@ -1,54 +1,86 @@
-# EngineeringTeam Crew
+# Engineering Team for Trading Simulation
 
-Welcome to the EngineeringTeam Crew project, powered by [crewAI](https://crewai.com). This template is designed to help you set up a multi-agent AI system with ease, leveraging the powerful and flexible framework provided by crewAI. Our goal is to enable your agents to collaborate effectively on complex tasks, maximizing their collective intelligence and capabilities.
+A multi-agent AI system powered by **CrewAI** that simulates a software development team tasked with autonomously building a trading simulation platform. The team consists of four specialized agents—Engineering Lead, Frontend Engineer, Backend Engineer, and Test Engineer—working together to execute buy/sell strategies.
 
-## Installation
+---
 
-Ensure you have Python >=3.10 <3.14 installed on your system. This project uses [UV](https://docs.astral.sh/uv/) for dependency management and package handling, offering a seamless setup and execution experience.
+## 🚀 Features
 
-First, if you haven't already, install uv:
+- 🤖 **Multi-Agent Architecture**: Each agent has a unique role, responsibilities, and tools.
+- 🛠 **Modular & Customizable**: Configure and extend agents and tasks via YAML.
+- ⚡ **Dependency Management via UV**: Powered by [UV](https://docs.astral.sh) for seamless setup.
+- 🖱 **Easy Execution**: Kick off the team with a single CLI command.
+- 📄 **Report Generation**: Outputs a `report.md` summarizing performance or findings.
+
+---
+
+## 📋 Prerequisites
+
+- Python **3.10-3.13**
+- Python package installer **pip**
+- CrewAI dependency manager **uv**
+
+---
+
+## ⚙️ Installation
+
+Install **uv**:
 
 ```bash
 pip install uv
-```
 
-Next, navigate to your project directory and install the dependencies:
 
-(Optional) Lock the dependencies and install them by using the CLI command:
-```bash
-crewai install
-```
-### Customizing
+🛠 Configuration
 
-**Add your `OPENAI_API_KEY` into the `.env` file**
+Customize the system using the following files under src/engineering_team/config/:
 
-- Modify `src/engineering_team/config/agents.yaml` to define your agents
-- Modify `src/engineering_team/config/tasks.yaml` to define your tasks
-- Modify `src/engineering_team/crew.py` to add your own logic, tools and specific args
-- Modify `src/engineering_team/main.py` to add custom inputs for your agents and tasks
+agents.yaml — define agent roles and capabilities.
 
-## Running the Project
+tasks.yaml — outline tasks or workflows to execute.
 
-To kickstart your crew of AI agents and begin task execution, run this from the root folder of your project:
+You can also extend functionality by modifying:
 
-```bash
-$ crewai run
-```
+crew.py — introduce new tools or agent logic.
 
-This command initializes the engineering_team Crew, assembling the agents and assigning them tasks as defined in your configuration.
+main.py — define inputs for simulation runs.
 
-This example, unmodified, will run the create a `report.md` file with the output of a research on LLMs in the root folder.
+Add your API key in a .env file:
 
-## Understanding Your Crew
+OPENAI_API_KEY=your_api_key_here
 
-The engineering_team Crew is composed of multiple AI agents, each with unique roles, goals, and tools. These agents collaborate on a series of tasks, defined in `config/tasks.yaml`, leveraging their collective skills to achieve complex objectives. The `config/agents.yaml` file outlines the capabilities and configurations of each agent in your crew.
+▶️ Running the Simulation
 
-## Support
+Execute the trading simulation with:
 
-For support, questions, or feedback regarding the EngineeringTeam Crew or crewAI.
-- Visit our [documentation](https://docs.crewai.com)
-- Reach out to us through our [GitHub repository](https://github.com/joaomdmoura/crewai)
-- [Join our Discord](https://discord.com/invite/X4JWnZnxPb)
-- [Chat with our docs](https://chatg.pt/DWjSBZn)
+crewai run
 
-Let's create wonders together with the power and simplicity of crewAI.
+
+This launches the agent team and generates report.md in the project root reflecting the simulation outcome.
+
+📂 Project Structure
+Engineering_team_for_TradingSimulation/
+├── src/
+│   └── engineering_team/
+│       ├── config/
+│       │   ├── agents.yaml
+│       │   └── tasks.yaml
+│       ├── crew.py
+│       └── main.py
+├── .gitignore
+├── pyproject.toml
+├── uv.lock
+└── README.md
+
+📚 Support & Resources
+
+CrewAI Documentation: https://docs.crewai.com
+
+CrewAI Website: https://crewai.com
+
+Join CrewAI Discord: https://discord.com
+
+For questions or issues, please open an issue in this repository.
+
+📜 License
+
+Distributed under the [Your License]—see LICENSE for details.
