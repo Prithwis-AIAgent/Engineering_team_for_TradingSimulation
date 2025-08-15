@@ -1,5 +1,4 @@
 .env
 __pycache__/
 .DS_Store
-steamlit_app.py
-*.pyc
+
